@@ -1,10 +1,10 @@
-cc=gcc
+CC=gcc
+CFLAGS=`pkg-config --cflags gmodule-2.0` -ggdb -g -Wall
+LIBS=`pkg-config --libs gmodule-2.0` -lm
 
-prog: testzpixels.o zpixels.o
-	$(cc) testzpixels.o zpixels.o -o prog -lm
+testzpixeltree:
+	$(CC) $(CFLAGS) testzpixeltree.c zpixel.c zpixeltree.c
+$(LIBS) -o testzpixeltree
 
-testzpixels.o: testzpixels.c zpixels.h
-	$(cc) -c testzpixels.c
-
-zpixels.o:  zpixels.c zpixels.h
-	$(cc) -c zpixels.c
+testzpixel:
+	$(CC) $(CFLAGS) testzpixel.c zpixel $(LIBS) -o testzpixel
